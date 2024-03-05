@@ -64,9 +64,7 @@ class Main {
         waitForEnterKeyPress("Press enter to print the HashMap: ");
 
         // Print each state/capital pair
-        for (Map.Entry<String, String> entry : stateCapitalMap.entrySet()) {
-            System.out.println(entry.getKey() + " - " + entry.getValue());
-        }
+        print(stateCapitalMap);
 
         // Create a Treemap from the HashMap, ignore case when searching
         Map<String, String> stateCapitalTreeMap = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
@@ -76,9 +74,7 @@ class Main {
         waitForEnterKeyPress("\nPress enter to print the TreeMap: ");
 
         // Print each state/capital pair, now in natural order
-        for (Map.Entry<String, String> entry : stateCapitalTreeMap.entrySet()) {
-            System.out.println(entry.getKey() + " - " + entry.getValue());
-        }
+        print(stateCapitalTreeMap);
 
         // Prompt user to enter a state name while valid name is not entered, returns state's capital
         getStatesCapital(stateCapitalTreeMap);
@@ -109,5 +105,11 @@ class Main {
             System.out.print(prompt);
             input = scanner.nextLine();
         } while (!input.isEmpty());
+    }
+
+    public static void print(Map<String, String> map) {
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + ", " + entry.getValue());
+        }
     }
 }
