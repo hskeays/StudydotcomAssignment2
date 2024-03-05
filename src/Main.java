@@ -86,13 +86,9 @@ class Main {
 
         // While input is not a valid state name, display prompt
         do {
-            System.out.print("\nEnter a state name to return it's capital city: ");
+            System.out.print("\nEnter a state name to return its capital city: ");
             input = scanner.nextLine();
-            if (treeMap.containsKey(input)) {
-                System.out.println(treeMap.get(input));
-            } else {
-                System.out.println("Not a valid state name! Try again");
-            }
+            System.out.println(treeMap.getOrDefault(input, "Not a valid state name! Try again"));
         } while (!treeMap.containsKey(input));
     }
 
@@ -108,8 +104,9 @@ class Main {
     }
 
     public static void print(Map<String, String> map) {
+        // Print each state and its capital
         for (Map.Entry<String, String> entry : map.entrySet()) {
-            System.out.println(entry.getKey() + ", " + entry.getValue());
+            System.out.println("State: " + entry.getKey() + " | Capital: " + entry.getValue());
         }
     }
 }
