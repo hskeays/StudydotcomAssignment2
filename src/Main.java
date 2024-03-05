@@ -5,9 +5,6 @@ import java.util.TreeMap;
 
 class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        String input;
-
         // Create HashMap of states and their capitals
         Map<String, String> stateCapitalMap = new HashMap<>();
 
@@ -63,12 +60,8 @@ class Main {
         stateCapitalMap.put("Wisconsin", "Madison");
         stateCapitalMap.put("Wyoming", "Cheyenne");
 
-        // Prompt user to press enter to continue the program
-        // While user input is not an empty string, continue to prompt
-        do {
-            System.out.print("Press enter to print the HashMap: ");
-            input = scanner.nextLine();
-        } while (!input.equals(""));
+        // Wait for user to press enter to continue program, else prompt again
+        waitForEnterKeyPress("Press enter to print the HashMap: ");
 
         // Print each state/capital pair
         for (Map.Entry<String, String> entry : stateCapitalMap.entrySet()) {
@@ -79,27 +72,42 @@ class Main {
         Map<String, String> stateCapitalTreeMap = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
         stateCapitalTreeMap.putAll(stateCapitalMap);
 
-        // Prompt user to press enter to continue the program
-        // While user input is not an empty string, continue to prompt
-        do {
-            System.out.print("\nPress enter to print the TreeMap: ");
-            input = scanner.nextLine();
-        } while (!input.equals(""));
+        // Wait for user to press enter to continue program, else prompt again
+        waitForEnterKeyPress("\nPress enter to print the TreeMap: ");
 
         // Print each state/capital pair, now in natural order
         for (Map.Entry<String, String> entry : stateCapitalTreeMap.entrySet()) {
             System.out.println(entry.getKey() + " - " + entry.getValue());
         }
 
-        // Prompt user to enter a state name while valid name is not entered
+        // Prompt user to enter a state name while valid name is not entered, returns state's capital
+        getStatesCapital(stateCapitalTreeMap);
+    }
+
+    public static void getStatesCapital(Map<String, String> treeMap) {
+        Scanner scanner = new Scanner(System.in);
+        String input;
+
+        // While input is not a valid state name, display prompt
         do {
             System.out.print("\nEnter a state name to return it's capital city: ");
             input = scanner.nextLine();
-            if (stateCapitalTreeMap.containsKey(input)) {
-                System.out.println(stateCapitalTreeMap.get(input));
+            if (treeMap.containsKey(input)) {
+                System.out.println(treeMap.get(input));
             } else {
-                System.out.println("Not a valid state name!");
+                System.out.println("Not a valid state name! Try again");
             }
-        } while (!stateCapitalTreeMap.containsKey(input));
+        } while (!treeMap.containsKey(input));
+    }
+
+    public static void waitForEnterKeyPress(String prompt) {
+        // Wait for user to press enter to continue program
+        Scanner scanner = new Scanner(System.in);
+        String input;
+
+        do {
+            System.out.print(prompt);
+            input = scanner.nextLine();
+        } while (!input.isEmpty());
     }
 }
