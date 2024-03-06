@@ -76,8 +76,10 @@ class Main {
         // Print each state/capital pair, now in natural order
         print(stateCapitalTreeMap);
 
-        // Prompt user to enter a state name while valid name is not entered, returns state's capital
+        // Prompt user to enter a state name, return the state's capital
         getStatesCapital(stateCapitalTreeMap);
+
+        System.out.println("\nProgram complete.");
     }
 
     public static void getStatesCapital(Map<String, String> treeMap) {
@@ -106,7 +108,7 @@ class Main {
     public static void print(Map<String, String> map) {
         // Print each state and its capital
         for (Map.Entry<String, String> entry : map.entrySet()) {
-            System.out.println("State: " + entry.getKey() + " | Capital: " + entry.getValue());
+            System.out.println(entry.getKey() + ", " + entry.getValue());
         }
     }
 }
